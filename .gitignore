@@ -7,6 +7,9 @@ __pycache__/
 # C extensions
 *.so
 
+echo ".DS_Store" >> .gitignore
+echo "static/admin/" >> .gitignore
+
 # Distribution / packaging
 .Python
 env/
