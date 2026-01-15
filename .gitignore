@@ -119,3 +119,4 @@ static/admin/
 # !**/migrations
 # !**/migrations/__init__.pystatic/admin/
 static/vendor/
+static/admin/
