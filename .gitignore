@@ -121,4 +121,6 @@ static/admin/
 # Only for Development only
 # **/migrations/**
 # !**/migrations
-# !**/migrations/__init__.py
+# !**/migrations/__init__.py.DS_Store
+static/admin/
+static/vendor/
