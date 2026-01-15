@@ -9,6 +9,7 @@ __pycache__/
 
 echo ".DS_Store" >> .gitignore
 echo "static/admin/" >> .gitignore
+echo "static/vendor/" >> .gitignore
 
 # Distribution / packaging
 .Python
