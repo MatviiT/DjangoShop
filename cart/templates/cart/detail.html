@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="cart-page">
+    <h1>Кошик</h1>
+    
+    {% if cart|length %}
+    <div class="cart-layout">
+        <!-- Ліва колонка: товари -->
+        <div class="cart-items">
+            {% for item in cart %}
+            <div class="cart-item">
+                <div class="item-image">
+                    {% if item.product.image %}
+                        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                    {% else %}
+                        <span class="no-image">Фото</span>
+                    {% endif %}
+                </div>
+                <div class="item-details">
+                    <div>
+                        <div class="item-name">{{ item.product.name }}</div>
+                        {% if item.product.category %}
+                        <div class="item-variant">{{ item.product.category.name }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="item-controls">
+                        <div class="qty-controls">
+                            <form action="{% url 'cart:decrease' item.product.id %}" method="post" class="qty-form">
+                                {% csrf_token %}
+                                <button type="submit" class="qty-btn">−</button>
+                            </form>
+                            <span class="qty-value">{{ item.qty }}</span>
+                            <form action="{% url 'cart:increase' item.product.id %}" method="post" class="qty-form">
+                                {% csrf_token %}
+                                <button type="submit" class="qty-btn">+</button>
+                            </form>
+                        </div>
+                        <div class="item-price">{{ item.total_price }} {{ item.currency }}</div>
+                    </div>
+                    <form action="{% url 'cart:remove' item.product.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn-remove">Видалити</button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Права колонка: підсумок -->
+        <div class="cart-summary">
+            <h2 class="summary-title">Ваше замовлення</h2>
+
+            <div class="summary-row">
+                <span class="label">Товари ({{ cart|length }})</span>
+                <span class="value">{{ cart.get_total_price }} {{ cart.get_currency }}</span>
+            </div>
+            <div class="summary-row">
+                <span class="label">Доставка</span>
+                <span class="value">Безкоштовно</span>
+            </div>
+
+            <div class="summary-divider"></div>
+
+            <div class="summary-total">
+                <span class="label">Разом</span>
+                <span class="value">{{ cart.get_total_price }} {{ cart.get_currency }}</span>
+            </div>
+
+            <a href="{% url 'cart:checkout' %}" class="btn-checkout">Оформити замовлення</a>
+            <a href="{% url 'shop:catalog_home' %}" class="btn-continue">Продовжити покупки</a>
+        </div>
+    </div>
+
+    {% else %}
+    <div class="cart-empty">
+        <div class="empty-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+            </svg>
+        </div>
+        <p>Ваш кошик порожній</p>
+        <a href="{% url 'shop:catalog_home' %}" class="btn-shop">Перейти до покупок</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

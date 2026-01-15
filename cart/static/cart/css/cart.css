@@ -1,0 +1,364 @@
+/* ==========================================
+   КОШИК - Двоколонковий дизайн
+   ========================================== */
+
+/* Контейнер сторінки */
+.cart-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.cart-page h1 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 32px;
+    letter-spacing: -0.02em;
+    color: #1d1d1f;
+}
+
+/* Двоколонковий layout */
+.cart-layout {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 32px;
+    align-items: start;
+}
+
+/* ==========================================
+   ЛІВА КОЛОНКА - Товари
+   ========================================== */
+
+.cart-items {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.cart-item {
+    display: flex;
+    gap: 20px;
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    transition: box-shadow 0.3s;
+}
+
+.cart-item:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Фото товару */
+.item-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 12px;
+    background: #f5f5f7;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.item-image .no-image {
+    font-size: 12px;
+    color: #86868b;
+}
+
+/* Деталі товару */
+.item-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.item-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1d1d1f;
+    margin-bottom: 4px;
+}
+
+.item-variant {
+    font-size: 14px;
+    color: #86868b;
+    margin-bottom: 12px;
+}
+
+.item-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+/* Кнопки кількості */
+.qty-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #f5f5f7;
+    border-radius: 980px;
+    padding: 4px;
+}
+
+.qty-form {
+    margin: 0;
+    display: inline;
+}
+
+.qty-btn {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: #fff;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    color: #1d1d1f;
+    font-family: inherit;
+}
+
+.qty-btn:hover {
+    background: #e8e8ed;
+}
+
+.qty-value {
+    font-size: 16px;
+    font-weight: 600;
+    min-width: 24px;
+    text-align: center;
+}
+
+.item-price {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1d1d1f;
+}
+
+/* Кнопка видалити */
+.btn-remove {
+    background: none;
+    border: none;
+    color: #86868b;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 4px 0;
+    transition: color 0.2s;
+    font-family: inherit;
+}
+
+.btn-remove:hover {
+    color: #ff3b30;
+}
+
+/* ==========================================
+   ПРАВА КОЛОНКА - Підсумок
+   ========================================== */
+
+.cart-summary {
+    background: #fff;
+    border-radius: 20px;
+    padding: 28px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 20px;
+}
+
+.summary-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e8e8ed;
+    color: #1d1d1f;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 15px;
+}
+
+.summary-row .label {
+    color: #86868b;
+}
+
+.summary-row .value {
+    font-weight: 500;
+    color: #1d1d1f;
+}
+
+.summary-divider {
+    height: 1px;
+    background: #e8e8ed;
+    margin: 20px 0;
+}
+
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.summary-total .label {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1d1d1f;
+}
+
+.summary-total .value {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1d1d1f;
+}
+
+/* Кнопки */
+.btn-checkout {
+    display: block;
+    width: 100%;
+    padding: 18px 1px;
+    background: #0071e3;
+    color: #fff;
+    border: none;
+    border-radius: 980px;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: inherit;
+    text-align: center;
+    text-decoration: none;
+}
+
+.btn-checkout:hover {
+    background: #0077ed;
+    transform: scale(1.02);
+}
+
+.btn-continue {
+    display: block;
+    text-align: center;
+    margin-top: 16px;
+    color: #0071e3;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.btn-continue:hover {
+    text-decoration: underline;
+}
+
+/* ==========================================
+   ПОРОЖНІЙ КОШИК
+   ========================================== */
+
+.cart-empty {
+    text-align: center;
+    padding: 80px 20px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.cart-empty .empty-icon {
+    margin-bottom: 24px;
+}
+
+.cart-empty .empty-icon svg {
+    width: 64px;
+    height: 64px;
+    stroke: #86868b;
+    fill: none;
+    stroke-width: 1.5;
+}
+
+.cart-empty p {
+    font-size: 20px;
+    color: #86868b;
+    margin-bottom: 24px;
+}
+
+.cart-empty .btn-shop {
+    display: inline-block;
+    padding: 14px 28px;
+    background: #0071e3;
+    color: #fff;
+    border-radius: 980px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.cart-empty .btn-shop:hover {
+    background: #0077ed;
+    transform: scale(1.02);
+}
+
+/* ==========================================
+   АДАПТИВНІСТЬ
+   ========================================== */
+
+@media (max-width: 900px) {
+    .cart-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .cart-summary {
+        position: static;
+        order: -1;
+    }
+}
+
+@media (max-width: 600px) {
+    .cart-page {
+        padding: 24px 16px;
+    }
+
+    .cart-page h1 {
+        font-size: 28px;
+        margin-bottom: 24px;
+    }
+
+    .cart-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 16px;
+    }
+
+    .item-image {
+        width: 120px;
+        height: 120px;
+    }
+
+    .item-controls {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .item-variant {
+        margin-bottom: 16px;
+    }
+
+    .summary-total .value {
+        font-size: 24px;
+    }
+}
