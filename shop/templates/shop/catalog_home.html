@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="topbar">
+  <h1>Apple Shop</h1>
+  <div class="currency">
+    <a class="{% if currency == 'UAH' %}active{% endif %}" href="{% url 'shop:set_currency' 'UAH' %}">₴</a>
+    <a class="{% if currency == 'USD' %}active{% endif %}" href="{% url 'shop:set_currency' 'USD' %}">$</a>
+    <a class="{% if currency == 'EUR' %}active{% endif %}" href="{% url 'shop:set_currency' 'EUR' %}">€</a>
+    <span style="opacity:.7;">{{ currency }}</span>
+  </div>
+</div>
+
+<div class="grid-cats">
+  {% for c in categories %}
+    <a
+      href="{{ c.get_absolute_url }}"
+      class="cat-card"
+      style="background-image:url('{{ c.image.url }}')"
+    >
+      <div class="cat-overlay"></div>
+
+      <div class="cat-content">
+        <div class="cat-title">{{ c.name }}</div>
+        <div class="cat-sub">Переглянути товари →</div>
+      </div>
+    </a>
+  {% empty %}
+    <p>Категорій ще немає</p>
+  {% endfor %}
+</div>
+
+<h2 style="margin:28px 0 10px; letter-spacing:-0.01em;">ТОП ПРОДАЖУ</h2>
+
+<div class="grid">
+  {% for p in top_products %}
+    {% include "shop/components/product_card.html" with p=p currency=currency %}
+  {% empty %}
+    <p style="opacity:.7;">Поки що немає товарів у ТОПі.</p>
+  {% endfor %}
+</div>
+
+
+
+
+{% endblock %}

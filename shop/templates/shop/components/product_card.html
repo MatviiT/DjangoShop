@@ -1,0 +1,50 @@
+<div class="card">
+  <a class="card-media" href="{{ p.get_absolute_url }}">
+    {% if p.image %}
+      <img src="{{ p.image.url }}" alt="{{ p.name }}">
+    {% else %}
+      <div class="img-placeholder"></div>
+    {% endif %}
+  </a>
+
+  <div class="card-body">
+    <div class="card-top">
+      <a class="card-title" href="{{ p.get_absolute_url }}">{{ p.name }}</a>
+
+      {% if p.in_stock %}
+        <span class="badge ok">В наявності</span>
+      {% else %}
+        <span class="badge no">Немає</span>
+      {% endif %}
+    </div>
+
+    <div class="price">
+      {% if currency == "USD" %}
+        {{ p.price_usd }} $
+      {% elif currency == "EUR" %}
+        {{ p.price_eur }} €
+      {% else %}
+        {{ p.price_uah }} ₴
+      {% endif %}
+    </div>
+
+    <div class="card-actions">
+      <a class="btn btn-outline btn-eq" href="{{ p.get_absolute_url }}">
+        Детальніше
+      </a>
+
+      {% if p.in_stock and p.is_active %}
+       <form action="{% url 'cart:add' p.id %}" method="post" class="add-to-cart">
+          {% csrf_token %}
+         <button class="btn btn-primary btn-eq" type="submit">
+            В корзину
+          </button>
+       </form>
+     {% else %}
+        <button class="btn btn-disabled btn-eq" type="button" disabled>
+         Немає
+       </button>
+     {% endif %}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="topbar">
+  <div>
+    <h1 style="margin:0;">{{ category.name }}</h1>
+    <a href="{% url 'shop:catalog_home' %}" style="opacity:.7; text-decoration:none;">← назад до каталогу</a>
+  </div>
+
+  <div class="currency">
+    <a class="{% if currency == 'UAH' %}active{% endif %}" href="{% url 'shop:set_currency' 'UAH' %}">₴</a>
+    <a class="{% if currency == 'USD' %}active{% endif %}" href="{% url 'shop:set_currency' 'USD' %}">$</a>
+    <a class="{% if currency == 'EUR' %}active{% endif %}" href="{% url 'shop:set_currency' 'EUR' %}">€</a>
+    <span style="opacity:.7;">{{ currency }}</span>
+  </div>
+</div>
+
+<div class="grid">
+  {% for p in products %}
+    {% include "shop/components/product_card.html" with p=p currency=currency %}
+  {% empty %}
+    <p>У цій категорії поки немає товарів</p>
+  {% endfor %}
+</div>
+
+{% endblock %}
