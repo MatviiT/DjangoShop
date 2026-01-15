@@ -1,0 +1,72 @@
+{% load static %}
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Apple Shop</title>
+  <link rel="stylesheet" href="{% static 'shop/css/shop.css' %}">
+  <link rel="stylesheet" href="{% static 'cart/css/cart.css' %}">
+</head>
+
+<body>
+  <div class="container">
+
+      <header class="site-header">
+        <div class="header-inner">
+
+          <!-- LEFT (MENU) -->
+          <div class="header-side left">
+
+             <!-- toggle -->
+             <input id="nav-toggle" class="nav-toggle" type="checkbox">
+
+            <!-- burger button -->
+            <label for="nav-toggle" class="burger" aria-label="Menu">
+             <span></span><span></span><span></span>
+            </label>
+
+          </div>
+
+          <!-- CENTER LOGO -->
+          <a href="{% url 'shop:catalog_home' %}" class="brand-center">
+            <img src="{% static 'shop/img/logo.png' %}" alt="Apple" class="brand-logo">
+          </a>
+
+          <!-- Cart -->
+          <div class="header-side right">
+            <a href="{% url 'cart:detail' %}" class="cart-text">
+              <svg class="cart-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 3h2l.4 2M7 13h10l4-8H5.4
+                   M7 13L5.4 5
+                   M7 13l-1.5 6
+                   m11.5-6L16 19
+                   M9 21a1 1 0 100-2
+                   M16 21a1 1 0 100-2"/>
+              </svg>
+              <span>Кошик</span>
+              <span class="cart-badge">{{ cart|length }}</span>
+            </a>
+          </div>
+
+        </div>
+        <!-- overlay -->
+        <label for="nav-toggle" class="nav-overlay"></label>
+
+        <!-- side drawer -->
+        <aside class="nav-drawer">
+          <div class="nav-head">
+            <div class="nav-title">Меню</div>
+            <label for="nav-toggle" class="nav-close">✕</label>
+          </div>
+
+          <nav class="nav-links">
+            <a href="{% url 'shop:catalog_home' %}">Головна</a>
+          </nav>
+        </aside>
+      </header>
+
+    {% block content %}{% endblock %}
+  </div>
+</body>
+</html>
