@@ -7,10 +7,6 @@ __pycache__/
 # C extensions
 *.so
 
-echo ".DS_Store" >> .gitignore
-echo "static/admin/" >> .gitignore
-echo "static/vendor/" >> .gitignore
-
 # Distribution / packaging
 .Python
 env/
@@ -121,6 +117,5 @@ static/admin/
 # Only for Development only
 # **/migrations/**
 # !**/migrations
-# !**/migrations/__init__.py.DS_Store
-static/admin/
+# !**/migrations/__init__.pystatic/admin/
 static/vendor/
