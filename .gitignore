@@ -120,3 +120,7 @@ static/admin/
 # !**/migrations/__init__.pystatic/admin/
 static/vendor/
 static/admin/
+static/admin/
+static/jazzmin/
+static/vendor/
+static/css/
