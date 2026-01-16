@@ -91,6 +91,7 @@
   padding: 12px;
   display: flex;
   flex-direction: column;
+  flex: 1;
   gap: 6px;
 }
 
@@ -102,6 +103,33 @@
   text-decoration: none;
   border: 1px solid transparent;
   opacity: .95;
+}
+
+.nav-bottom {
+    margin-top: auto;
+    padding: 16px;
+    border-top: 1px solid rgba(255,255,255,.08);
+}
+
+.nav-bottom a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 12px;
+}
+
+.nav-bottom a:hover {
+    background: rgba(255,255,255,.06);
+}
+
+.nav-bottom svg {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
+    fill: none;
 }
 
 .nav-links a:hover{
@@ -152,6 +180,7 @@
 
 .header-side.right{
   justify-content:flex-end;
+  gap: 8px;
 }
 
 /* Burger Menu */
@@ -227,22 +256,54 @@
   font-size:16px;
 }
 
-/* CART BUTTON - Apple Style */
+/* Profile logo */
+.profile-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 980px;
+    border: 1.5px solid rgb(210, 202, 202);
+    transition: all 0.3s ease;
+}
+
+.profile-logo:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.profile-logo svg {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    fill: none;
+}
+
+.profile-name {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* CART BUTTON */
 
 .cart-text {
     position: relative;
     display: inline-flex;
     align-items: center;
-    gap: 10px;  /* збільшив відступ */
-    padding: 10px 20px;  /* трохи більше padding */
+    gap: 6px;  
+    padding: 8px 14px;  
     background: transparent;
     border: 1.5px solid rgb(210, 202, 202);
     border-radius: 980px;
     cursor: pointer;
     transition: all 0.3s ease;
     text-decoration: none;
-    color: #fff;  /* чисто білий текст */
-    font-size: 15px;  /* трохи більший шрифт */
+    color: #fff;  
+    font-size: 14px;  
     font-weight: 500;
 }
 
@@ -252,32 +313,31 @@
 }
 
 .cart-text .cart-icon {
-    width: 20px;  /* трохи більша іконка */
-    height: 20px;
+    width: 18px;  
+    height: 18px;
     stroke: currentColor;
     stroke-width: 2;
     fill: none;
 }
 
 .cart-text .cart-badge {
-    min-width: 24px;  /* більший badge */
-    height: 24px;
+    min-width: 20px;  
+    height: 20px;
     background: #c32820;
     color: white;
-    font-size: 13px;  /* більший шрифт */
+    font-size: 12px;  
     font-weight: 700;
     border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0 8px;
-    margin-left: 0;  /* прибрав негативний margin */
+    margin-left: 0;  
 }
 .cart-text span:not(.cart-badge) {
     color: #fff;
 }
 
-/* Варіант для світлого фону (якщо потрібно) */
 .cart-link.light{
   color: #1d1d1f;
 }
