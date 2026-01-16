@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'shop.apps.ShopConfig',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -132,3 +133,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 CART_SESSION_ID = "cart"
+
+LOGIN_URL = 'accounts:login'
+LOGIN_REDIRECT_URL = 'shop:catalog_home'
+LOGOUT_REDIRECT_URL = 'shop:catalog_home'
