@@ -7,6 +7,7 @@
     <title>Apple Shop</title>
     <link rel="stylesheet" href="{% static 'shop/css/shop.css' %}">
     <link rel="stylesheet" href="{% static 'cart/css/cart.css' %}">
+    <link rel="stylesheet" href="{% static 'accounts/css/accounts.css' %}">
 </head>
 <body>
 <div class="container">
@@ -25,7 +26,7 @@
             </div>
             <div class="nav-links">
                 <a href="{% url 'shop:catalog_home' %}">Головна</a>
-                <a href="{% url 'cart:detail' %}">Корзина</a>
+                <a href="{% url 'cart:detail' %}">Кошик</a>
                 <div class="nav-sep"></div>
                 <div class="nav-section-title">Категорії</div>
                 {% for c in nav_categories %}
@@ -33,9 +34,21 @@
                   href="{% url 'shop:category_detail' c.slug %}"
                   class="{% if request.resolver_match.url_name == 'category_detail' and request.resolver_match.kwargs.slug == c.slug %}active{% endif %}"
                 >
-                  {{ c.name }}
+                {{ c.name }}
                 </a>
-              {% endfor %}
+                {% endfor %}
+              <div class="nav-bottom">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'accounts:profile' %}">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                      </svg> {{ user.username }}</a>
+                    <a href="{% url 'accounts:logout' %}">Вийти</a>
+                {% else %}
+                    <a href="{% url 'accounts:login' %}">Увійти</a>
+                    <a href="{% url 'accounts:register' %}">Реєстрація</a>
+                {% endif %}
+              </div>
             </div>
         </nav>
 
@@ -52,8 +65,23 @@
                 <img src="{% static 'shop/img/logo.png' %}" alt="Apple" class="brand-logo">
             </a>
 
-            <!-- CART -->
+            <!-- PROFILE AND CART -->
             <div class="header-side right">
+                {% if user.is_authenticated %}
+                  <a href="{% url 'accounts:profile' %}" class="profile-logo">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                      </svg>
+                      <span class="profile-name">{{ user.username }}</span>
+                  </a>
+                {% else %}
+                  <a href="{% url 'accounts:login' %}" class="profile-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                    </svg>
+                    <span class="profile-name">Увійти</span>
+                  </a>
+                {% endif %}
                 <a href="{% url 'cart:detail' %}" class="cart-text">
                     <svg class="cart-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M3 3h2l.4 2M7 13h10l4-8H5.4 M7 13L5.4 5 M7 13l-1.5 6 m11.5-6L16 19 M9 21a1 1 0 100-2 M16 21a1 1 0 100-2"/>
