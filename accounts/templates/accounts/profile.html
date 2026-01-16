@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="auth-container">
+    <h1>Профіль</h1>
+    <p><strong>Ім'я:</strong> {{ user.username }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <a href="{% url 'accounts:logout' %}" class="btn btn-outline">Вийти</a>
+</div>
+{% endblock %}

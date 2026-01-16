@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="auth-container">
+    <h1>Реєстрація</h1>
+    <form method="post" class="auth-form">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="form-group">
+                <label>{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                    <span class="error">{{ field.errors.0 }}</span>
+                {% endif %}
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Зареєструватись</button>
+    </form>
+    <p class="auth-link">Вже є акаунт? <a href="{% url 'accounts:login' %}">Увійти</a></p>
+</div>
+{% endblock %}
